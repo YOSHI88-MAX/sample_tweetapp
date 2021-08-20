@@ -130,3 +130,6 @@ end
 
 # 投稿画面のindexから、posts/:id の投稿詳細に行けない問題の解決方法について
 # zenkakuのvscode 拡張機能を使って ファイルを全て点検した結果、全角の部分がありその部分を消したら投稿詳細画面に侵入できた
+
+#pg 1.2.3をインストールし、bundle installできない
+#env ARCHFLAGS="-arch x86_64" gem install pg このコマンド、環境変数を用いてpath を示してあげる
