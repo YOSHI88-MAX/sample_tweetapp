@@ -133,3 +133,76 @@ end
 
 #pg 1.2.3をインストールし、bundle installできない
 #env ARCHFLAGS="-arch x86_64" gem install pg このコマンド、環境変数を用いてpath を示してあげる
+
+#環境的問題 問題例 以下 関係ファイル：gemfile, gemlock
+# remote:  !
+# remote:  !     Failed to install gems via Bundler.
+# remote:  !
+# remote:  !     Push rejected, failed to compile Ruby app.
+# remote: 
+# remote:  !     Push failed
+# remote: Verifying deploy...
+# remote: 
+# remote: !       Push rejected to sample77tweetapp.
+# remote: 
+# To https://git.heroku.com/sample77tweetapp.git
+#  ! [remote rejected] master -> master (pre-receive hook declined)
+# error: failed to push some refs to 'https://git.heroku.com/sample77tweetapp.git'
+
+#上記解決方法
+
+# Yoshihiros-MacBook-Pro:sample_tweetapp yoshi$ bundler -v
+# Bundler version 2.2.26
+# Yoshihiros-MacBook-Pro:sample_tweetapp yoshi$ bundle lock --add-platform x86_64-linux
+# Fetching gem metadata from https://rubygems.org/............
+# Resolving dependencies.........
+# Writing lockfile to /Users/yoshi/sample_tweetapp/Gemfile.lock
+# Yoshihiros-MacBook-Pro:sample_tweetapp yoshi$ bundler -v
+# Bundler version 2.2.26
+# Yoshihiros-MacBook-Pro:sample_tweetapp yoshi$ bundle _2.2.21_ install
+
+# Yoshihiros-MacBook-Pro:sample_tweetapp yoshi$ bundler -v
+# Bundler version 2.2.26
+# Yoshihiros-MacBook-Pro:sample_tweetapp yoshi$ bundler -v
+# Bundler version 2.2.26
+# Yoshihiros-MacBook-Pro:sample_tweetapp yoshi$ bundle _2.2.21_ install
+
+# Yoshihiros-MacBook-Pro:sample_tweetapp yoshi$ bundler -v
+# Bundler version 2.2.21
+# Yoshihiros-MacBook-Pro:sample_tweetapp yoshi$ git add .
+# Yoshihiros-MacBook-Pro:sample_tweetapp yoshi$ git commit -m "fix"
+# [master b168a19] fix
+#  Committer: Yoshi <yoshi@Yoshihiros-MacBook-Pro.local>
+# Your name and email address were configured automatically based
+# on your username and hostname. Please check that they are accurate.
+# You can suppress this message by setting them explicitly. Run the
+# following command and follow the instructions in your editor to edit
+# your configuration file:
+
+#     git config --global --edit
+
+# After doing this, you may fix the identity used for this commit with:
+
+#     git commit --amend --reset-author
+
+#  1 file changed, 4 insertions(+), 1 deletion(-)
+# Yoshihiros-MacBook-Pro:sample_tweetapp yoshi$ git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 2 commits.
+#   (use "git push" to publish your local commits)
+
+# nothing to commit, working tree clean
+# Yoshihiros-MacBook-Pro:sample_tweetapp yoshi$ git push heroku master
+
+# sqlite3でweb applicationを作り始めたから、herokuにローカルからリモートへあげるときのpush時にpostgresql に変換しなければならず
+# gemfileの変更内容を、gemlockの確定バージョンにしてpushするため、確定情報はadd, commit, pushの手順であげる
+
+# applicationを作る時に、まず日本語でこの機能が欲しいみたいな感じで組み立てていく。
+#   ex この画面にはユーザーの一覧を作りたい、その時にどうすれば良いか '7つのaction(controller)' → ユーザー全部を取得する必要がありそう⇨ データベースからユーザー全部を引っ張ってくる必要がある 
+
+#deployした後にローカルで変更した内容
+# git add. git commit, git push heroku master で反映しないと行けない
+
+# github ローカルの内容をアップデートする
+# 参考URL :   https://qiita.com/sayama0402/items/9afbb519d97327b9f05c
+# 参考URL : https://atmarkit.itmedia.co.jp/ait/articles/1701/24/news141_3.html

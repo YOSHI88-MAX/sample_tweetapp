@@ -15,7 +15,7 @@
          <%= link_to("/likes/#{@post.id}/destroy",{method: "post"}) do %>
           < span class= "fa fa-heart like-btn-unlike"></span>
           <% end %>
-      <else>
+      <% else %>
       <%= link_to("/likes/#{@post.id}/create",{method: "post"}) do %>
            <span class= "fa fa-heart like-btn"></span>
            <% end %>
@@ -29,7 +29,7 @@
        </div>
        <% end %>
        
-
+       </div>
     </div>
   </div>
 

@@ -28,3 +28,4 @@ Rails.application.routes.draw do
 end
 
 # routes, controller and html... thats the flow. by YOShI comment
+# routes is the essential
